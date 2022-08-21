@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localConverters="clr-namespace:MauiBMICalculator.Converters"
+    x:Class="MauiBMICalculator.Views.ResultsPage"
+    Title="BMI Calculator - Result">
+
+    <ContentPage.Resources>
+        <localConverters:BMIOpacityConverter x:Key="cvtUnderWeightBMI" FromValue="0" ToValue="18.9"/>
+        <localConverters:BMIOpacityConverter x:Key="cvtNormalBMI" FromValue="19" ToValue="24.9"/>
+        <localConverters:BMIOpacityConverter x:Key="cvtOverWeightBMI" FromValue="25" ToValue="29.9"/>
+        <localConverters:BMIOpacityConverter x:Key="cvtObeseBMI" FromValue="30" ToValue="39.9"/>
+        <localConverters:BMIOpacityConverter x:Key="cvtSeverlyObeseBMI" FromValue="40" ToValue="100"/>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Spacing="32"
+        IgnoreSafeArea="True">
+
+        <!-- Header/Title -->
+        <Label
+            Text="Your BMI is"
+            Style="{StaticResource SectionHeaderStyle}" 
+            HorizontalOptions="Center" />
+
+        <!-- BMI Result -->
+        <Label
+            Text="{Binding ComputedBMI, StringFormat='{0:0.0}', Mode=OneWay}"
+            Style="{StaticResource BMIResultStyle}" 
+            HorizontalOptions="Center" />
+
+
+        <!-- BMI Scale -->
+        <Grid
+            ColumnDefinitions="*,*,*,*,*"
+            RowDefinitions="80, 44, 14"
+            ColumnSpacing="12"       
+            Margin="24,0">
+
+            <!-- Underweight -->
+            <Image
+                Source="{Binding AvatarImage, Mode=OneWay}"
+                Grid.Column="0"
+                Grid.Row="0"
+                Aspect="Fill"
+                WidthRequest="16"
+                HorizontalOptions="Center"
+                VerticalOptions="Fill"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtUnderWeightBMI}}" />
+
+            <Label
+                Grid.Column="0"
+                Grid.Row="1"
+                Text="Under&#x0a;Weight"
+                Style="{StaticResource ScaleHeaderStyle}" 
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtUnderWeightBMI}}" />
+
+            <Label
+                Grid.Column="0"
+                Grid.Row="2"
+                Text="&lt; 19"
+                Style="{StaticResource ScaleDisplayStyle}" 
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtUnderWeightBMI}}" />
+
+
+            <!-- Normal -->
+            <Image
+                Source="{Binding AvatarImage, Mode=OneWay}"
+                Grid.Column="1"
+                Grid.Row="0"
+                Aspect="Fill"
+                WidthRequest="20"
+                HorizontalOptions="Center"
+                VerticalOptions="Fill"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtNormalBMI}}" />
+
+            <Label
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="Normal"
+                Style="{StaticResource ScaleHeaderStyle}"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtNormalBMI}}"/>
+
+            <Label
+                Grid.Column="1"
+                Grid.Row="2"
+                Text="19 to 24"
+                Style="{StaticResource ScaleDisplayStyle}"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtNormalBMI}}"/>
+
+
+            <!-- Overweight -->
+            <Image
+                Source="{Binding AvatarImage, Mode=OneWay}"
+                Grid.Column="2"
+                Grid.Row="0"
+                Aspect="Fill"
+                WidthRequest="24"
+                HorizontalOptions="Center"
+                VerticalOptions="Fill"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtOverWeightBMI}}"/>
+
+            <Label
+                Grid.Column="2"
+                Grid.Row="1"
+                Text="Over&#x0a;Weight"
+                Style="{StaticResource ScaleHeaderStyle}"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtOverWeightBMI}}"/>
+
+            <Label
+                Grid.Column="2"
+                Grid.Row="2"
+                Text="25 to 29"
+                Style="{StaticResource ScaleDisplayStyle}"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtOverWeightBMI}}"/>
+
+            <!-- Obese -->
+            <Image
+                Source="{Binding AvatarImage, Mode=OneWay}"
+                Grid.Column="3"
+                Grid.Row="0"
+                Aspect="Fill"
+                WidthRequest="29"
+                HorizontalOptions="Center"
+                VerticalOptions="Fill"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtObeseBMI}}"/>
+
+            <Label
+                Grid.Column="3"
+                Grid.Row="1"
+                Text="Obese"
+                Style="{StaticResource ScaleHeaderStyle}"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtObeseBMI}}"/>
+
+            <Label
+                Grid.Column="3"
+                Grid.Row="2"
+                Text="30 to 39"
+                Style="{StaticResource ScaleDisplayStyle}" 
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtObeseBMI}}"/>
+
+            <!-- Severly Obese -->
+            <Image
+                Source="{Binding AvatarImage, Mode=OneWay}"
+                Grid.Column="4"
+                Grid.Row="0"
+                Aspect="Fill"
+                WidthRequest="35"
+                HorizontalOptions="Center"
+                VerticalOptions="Fill"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtSeverlyObeseBMI}}"/>
+
+            <Label
+                Grid.Column="4"
+                Grid.Row="1"
+                Text="Severly&#x0a;Obese"
+                Style="{StaticResource ScaleHeaderStyle}"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtSeverlyObeseBMI}}"/>
+
+            <Label
+                Grid.Column="4"
+                Grid.Row="2"
+                Text="&gt; 40"
+                Style="{StaticResource ScaleDisplayStyle}"
+                Opacity="{Binding ComputedBMI, Converter={StaticResource cvtSeverlyObeseBMI}}"/>
+
+        </Grid>
+
+
+    </VerticalStackLayout>
+
+
+</ContentPage>

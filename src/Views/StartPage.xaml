@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiBMICalculator.Views.StartPage"
+    Title="BMI Calculator - Step 1">
+    <VerticalStackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Spacing="64"
+        IgnoreSafeArea="True">
+
+        <!-- Header/Title -->
+        <Label
+            Text="Choose your Gender"
+            Style="{StaticResource SectionHeaderStyle}" 
+            HorizontalOptions="Center" />
+
+        <!-- Gender Selection-->
+        <Grid
+            ColumnDefinitions="Auto, 48, Auto">
+
+            <!-- Male -->
+            <ContentView                
+                Grid.Column="0"
+                WidthRequest="140"
+                HeightRequest="140"
+                HorizontalOptions="Center"
+                VerticalOptions="End">
+
+                <Ellipse 
+                    Fill="{StaticResource LightBackgroundColor}"                
+                    StrokeThickness="0"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Fill"
+                    InputTransparent="True"/>
+
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectGenderCommand, Mode=OneWay}" CommandParameter="Male" />
+                </ContentView.GestureRecognizers>
+            </ContentView>
+
+            <Image
+                Source="male.png"
+                Grid.Column="0"
+                HeightRequest="195"
+                WidthRequest="50"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                InputTransparent="True"
+                Margin="0,0,0,16" />
+
+            <Image
+                Source="checkedicon.png"
+                Grid.Column="0"
+                WidthRequest="24"
+                HeightRequest="24"
+                IsVisible="{Binding IsMaleSelected, Mode=OneWay}"
+                HorizontalOptions="End"
+                VerticalOptions="Start" 
+                Margin="0,0,12,12" />
+
+
+
+
+            <!-- Female -->
+            <ContentView                
+                Grid.Column="2"
+                WidthRequest="140"
+                HeightRequest="140"
+                HorizontalOptions="Center"
+                VerticalOptions="End">
+
+                <Ellipse 
+                    Fill="{StaticResource LightBackgroundColor}"                
+                    StrokeThickness="0"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Fill"
+                    InputTransparent="True"/>
+
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectGenderCommand, Mode=OneWay}" CommandParameter="Female" />
+                </ContentView.GestureRecognizers>
+            </ContentView>
+
+            <Image
+                Source="female.png"
+                Grid.Column="2"
+                HeightRequest="195"
+                WidthRequest="50"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                InputTransparent="True"
+                Margin="0,0,0,16" />
+
+            <Image
+                Source="checkedicon.png"
+                Grid.Column="2"
+                WidthRequest="24"
+                HeightRequest="24"
+                IsVisible="{Binding IsFemaleSelected, Mode=OneWay}"
+                HorizontalOptions="End"
+                VerticalOptions="Start" 
+                Margin="0,0,12,12" />
+
+
+        </Grid>
+
+         <!-- Next Page Button -->
+        <ImageButton
+            Style="{StaticResource NextButtonStyle}"
+            HorizontalOptions="Center"
+            Command="{Binding GotoStep2Command, Mode=OneWay}" /> 
+
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,75 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>MauiBMICalculator</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>BMI Calculator</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.mauibmicalculator</ApplicationId>
+		<ApplicationIdGuid>2F93C3B4-B2F3-40A1-9721-E971FEBF4061</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Views\" />
+	  <None Remove="SkiaSharp.Views.Maui.Controls" />
+	  <None Remove="Resources\Styles\" />
+	  <None Remove="CommunityToolkit.Mvvm" />
+	  <None Remove="ViewModels\" />
+	  <None Remove="Controls\" />
+	  <None Remove="Converters\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Views\" />
+	  <Folder Include="Resources\Styles\" />
+	  <Folder Include="ViewModels\" />
+	  <Folder Include="Controls\" />
+	  <Folder Include="Converters\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Views\StartPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Step2Page.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ResultsPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\VerticalGuage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.1" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+	</ItemGroup>
+</Project>
